@@ -22,7 +22,7 @@ namespace ConsoleApp1
         public double[] s { get; set; }
         public Triangle(double[] sides)
         {
-            foreach (var s in sides) if (s <= 0) throw new ArgumentException();
+            foreach (var s in sides) if (s <= 0 || sides.Length !=3) throw new ArgumentException();
             s = sides;
             p = (sides[0] + sides[1] + sides[2]) / 2;
 
@@ -31,6 +31,13 @@ namespace ConsoleApp1
         public void Print()
         {
             Console.WriteLine(Area);
+          
         }
+
+        public  static bool isPryamougolniy(Triangle triangle) =>
+             (triangle.s[0] * triangle.s[0] + triangle.s[1] * triangle.s[1] == triangle.s[2] * triangle.s[2]) 
+            || (triangle.s[0] * triangle.s[0] + triangle.s[2] * triangle.s[2] == triangle.s[1] * triangle.s[1])
+            || (triangle.s[2] * triangle.s[2] + triangle.s[1] * triangle.s[1] == triangle.s[0] * triangle.s[0]) ;
+       
     }
 }
